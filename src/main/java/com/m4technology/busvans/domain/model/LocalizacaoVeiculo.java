@@ -13,11 +13,8 @@ public class LocalizacaoVeiculo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne
-    @JoinColumn(name = "ID_VEICULO")
-    private Veiculo veiculo;
-    private Long latitude;
-    private Long longitude;
+    private Double latitude;
+    private Double longitude;
     @CreationTimestamp
     private LocalDateTime atualizacao;
 }

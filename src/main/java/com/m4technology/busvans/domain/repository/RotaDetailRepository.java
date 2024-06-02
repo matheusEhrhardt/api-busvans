@@ -3,6 +3,7 @@ package com.m4technology.busvans.domain.repository;
 import com.m4technology.busvans.domain.dto.LocalizacaoVeiculoDTO;
 import com.m4technology.busvans.domain.dto.ResumoRotaDTO;
 import com.m4technology.busvans.domain.query.RotaQuery;
+import com.m4technology.busvans.domain.utils.PaginationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -24,14 +25,16 @@ public class RotaDetailRepository {
     public List<ResumoRotaDTO> consultaResumoRotas(Long idPartida, Long idChegada, Integer diaSemana, String tipoVeiculo, int pagina, int limite){
 
         NamedParameterJdbcTemplate namedTemplateAmzcred = new NamedParameterJdbcTemplate(datasource);
+        int paginaCalc = PaginationUtils.getPagina(pagina,limite);
+        int limiteCalc = PaginationUtils.getLimite(pagina,limite);
 
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("local_partida", idPartida);
         parameters.put("local_chegada", idChegada);
         parameters.put("dia_semana", "%" + diaSemana + "%");
-        parameters.put("pagina", pagina);
-        parameters.put("limite", limite);
         parameters.put("tipo", tipoVeiculo);
+        parameters.put("pagina", paginaCalc);
+        parameters.put("limite", limiteCalc);
 
         return namedTemplateAmzcred
                 .query(RotaQuery.buscarRotasPorPartidaChegada,parameters, (rs, rowNum) -> new ResumoRotaDTO(rs));

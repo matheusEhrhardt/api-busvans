@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LocalizacaoVeiculoRepository extends JpaRepository<LocalizacaoVeiculo, Long> {
+
+
 }

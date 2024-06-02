@@ -1,9 +1,12 @@
 package com.m4technology.busvans.domain.service;
 
 import com.m4technology.busvans.domain.dto.LocalizacaoVeiculoDTO;
+import com.m4technology.busvans.domain.enums.StatusEnum;
+import com.m4technology.busvans.domain.exception.EntidadeNaoEncontradaException;
 import com.m4technology.busvans.domain.exception.NegocioException;
 import com.m4technology.busvans.domain.generic.GenericService;
 import com.m4technology.busvans.domain.model.LocalizacaoVeiculo;
+import com.m4technology.busvans.domain.model.Veiculo;
 import com.m4technology.busvans.domain.repository.LocalizacaoVeiculoDetailRepository;
 import com.m4technology.busvans.domain.repository.LocalizacaoVeiculoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -21,13 +25,15 @@ public class LocalizacaoVeiculoService extends GenericService<LocalizacaoVeiculo
 
     @Autowired
     private LocalizacaoVeiculoDetailRepository localizacaoVeiculoRepository;
+    @Autowired
+    private VeiculoService veiculoService;
 
     public LocalizacaoVeiculoService() {
         super(new LocalizacaoVeiculo());
     }
 
-    public List<LocalizacaoVeiculoDTO> buscarVeiculosProximos(Long idPartida,Long idChegada,LocalDate dataViagem, Long latitude,
-                                                              Long longitude, String tipoVeiculo) {
+    public List<LocalizacaoVeiculoDTO> buscarVeiculosProximos(Long idPartida,Long idChegada,LocalDate dataViagem, Double latitude,
+                                                              Double longitude, String tipoVeiculo) {
 
         if (!dataViagem.equals(LocalDate.now())){
             throw new NegocioException("A data informada precisa ser igual a hoje.");
@@ -52,8 +58,8 @@ public class LocalizacaoVeiculoService extends GenericService<LocalizacaoVeiculo
         return localizacaoVeiculo;
     }
 
-    public double calcularDistancia(double latitudeCliente, double longitudeCliente,
-                                           double latitudeVeiculo, double longitudeVeiculo) {
+    public double calcularDistancia(Double latitudeCliente, Double longitudeCliente,
+                                    Double latitudeVeiculo, Double longitudeVeiculo) {
 
         int EARTH_RADIUS_KM = 6371; // Raio da Terra em km
         double dLat = Math.toRadians(latitudeVeiculo - latitudeCliente);
@@ -66,5 +72,25 @@ public class LocalizacaoVeiculoService extends GenericService<LocalizacaoVeiculo
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
         return EARTH_RADIUS_KM * c;
+    }
+
+    public StatusEnum registrarLocalizacaoVeiculo(LocalizacaoVeiculoDTO localizacaoVeiculoDTO){
+
+        LocalizacaoVeiculo localizacaoVeiculo;
+
+        Optional<Veiculo> veiculo =  veiculoService.buscarPorPlaca(localizacaoVeiculoDTO.getPlaca());
+
+        if (veiculo.isEmpty()){
+            throw new EntidadeNaoEncontradaException("Não foi encontrado nenhum veiculo com a placa: " + localizacaoVeiculoDTO.getPlaca());
+        }
+
+        localizacaoVeiculo = veiculo.get().getLocalizacao() == null ? new LocalizacaoVeiculo() : veiculo.get().getLocalizacao();
+
+        localizacaoVeiculo.setLatitude(localizacaoVeiculoDTO.getLatitude());
+        localizacaoVeiculo.setLongitude(localizacaoVeiculoDTO.getLongitude());
+
+        repository.save(localizacaoVeiculo);
+
+        return StatusEnum.SUC;
     }
 }

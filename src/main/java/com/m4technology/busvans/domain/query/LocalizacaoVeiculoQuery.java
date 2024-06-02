@@ -16,7 +16,7 @@ public class LocalizacaoVeiculoQuery {
             "    join localizacao_veiculo lv on lv.ID = v.ID_LOCALIZACAO" +
             "    where c.id = :local_partida" +
             "    and c2.id = :local_chegada" +
-            "    and vr.DIAS_SEMANA like :dia_semana" +
+//            "    and vr.DIAS_SEMANA like :dia_semana" +
             "    and (v.tipo = :tipo or :tipo is null)" +
             "    and DATE_SUB(vr.HORA_SAIDA, INTERVAL 20 MINUTE) < DATE_FORMAT(NOW(), '%H:%i')" +
             "    and DATE_ADD(vr.hora_saida, INTERVAL pp.duracao_viagem hour) > DATE_FORMAT(NOW(), '%H:%i')";
