@@ -21,7 +21,6 @@ public class Passagem {
     @JoinColumn(name="ID_VEICULO_ROTA")
     private VeiculoRota veiculoRota;
     private Integer quantidade;
-//    private BigDecimal valor;
     @CreationTimestamp
     @Column(name = "DATA_HORA_COMPRA")
     private LocalDateTime dataHoraCompra;
