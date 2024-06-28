@@ -1,6 +1,7 @@
 package com.m4technology.busvans.domain.utils;
 
 import java.security.SecureRandom;
+import java.util.UUID;
 
 public class StringUtils {
 
@@ -15,5 +16,9 @@ public class StringUtils {
             stringBuilder.append(CHARACTERS.charAt(index));
         }
         return stringBuilder.toString();
+    }
+
+    public static String generateID(){
+        return UUID.randomUUID().toString();
     }
 }
