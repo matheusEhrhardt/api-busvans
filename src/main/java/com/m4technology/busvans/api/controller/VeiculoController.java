@@ -10,6 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Tag(name = "Veiculos")
 @RestController
-@RequestMapping("/veiculos")
+@RequestMapping("api-bilheteria/veiculos")
 public class VeiculoController extends GenericController<VeiculoService, Veiculo> {
 }

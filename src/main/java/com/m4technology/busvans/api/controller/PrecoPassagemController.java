@@ -14,7 +14,7 @@ import java.util.List;
 
 @Tag(name = "Preço passagens")
 @RestController
-@RequestMapping("/preco-passagens")
+@RequestMapping("api-bilheteria/preco-passagens")
 public class PrecoPassagemController extends GenericController<PrecoPassagemService, PrecoPassagem> {
 
     @GetMapping("/tabela-precos")

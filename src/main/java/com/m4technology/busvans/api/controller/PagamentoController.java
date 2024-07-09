@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "Pagamentos")
 @RestController
-@RequestMapping("/pagamentos")
+@RequestMapping("api-bilheteria/pagamentos")
 public class PagamentoController extends GenericController<PagamentoService, Pagamento> {
 
     @PostMapping("/efetuar-pagamento")

@@ -9,6 +9,7 @@ import lombok.Data;
 public class Ticket {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     @Enumerated(EnumType.STRING)
     private StatusTicketEnum status;

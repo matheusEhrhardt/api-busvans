@@ -12,6 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Tag(name = "Veiculos Rotas")
 @RestController
-@RequestMapping("/veiculos-rotas")
+@RequestMapping("api-bilheteria/veiculos-rotas")
 public class VeiculoRotaController extends GenericController<VeiculoRotaService, VeiculoRota> {
 }

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Tag(name = "Tickets")
 @RestController
-@RequestMapping("/tickets")
+@RequestMapping("api-bilheteria/tickets")
 public class TicketController extends GenericController<TicketService, Ticket> {
 }
 

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "Mercado Pago")
 @RestController
-@RequestMapping("/mercado-pago")
+@RequestMapping("api-bilheteria/mercado-pago")
 public class MercadoPagoController {
 
     @Autowired

@@ -16,7 +16,7 @@ import java.util.List;
 
 @Tag(name = "Passagens")
 @RestController
-@RequestMapping("/passagens")
+@RequestMapping("api-bilheteria/passagens")
 public class PassagemController extends GenericController<PassagemService, Passagem> {
 
     @GetMapping("/pssagem-disponiveis/{email}")

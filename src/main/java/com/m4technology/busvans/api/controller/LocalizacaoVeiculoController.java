@@ -15,7 +15,7 @@ import java.util.List;
 
 @Tag(name = "Localizações Veiculos")
 @RestController
-@RequestMapping("/localizacao-veiculo")
+@RequestMapping("api-bilheteria/localizacao-veiculo")
 public class LocalizacaoVeiculoController extends GenericController<LocalizacaoVeiculoService, LocalizacaoVeiculo> {
 
     @GetMapping("/buscar-rotas/{idPartida}/{idChegada}/{dataViagem}/{latitude}/{longitude}")

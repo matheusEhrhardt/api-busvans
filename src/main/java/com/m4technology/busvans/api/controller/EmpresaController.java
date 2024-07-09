@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Tag(name = "Empresas")
 @RestController
-@RequestMapping("/empresas")
+@RequestMapping("api-bilheteria/empresas")
 public class EmpresaController extends GenericController<EmpresaService, Empresa> {
 }

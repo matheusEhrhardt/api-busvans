@@ -13,7 +13,7 @@ import java.util.List;
 
 @Tag(name = "Rotas")
 @RestController
-@RequestMapping("/rotas")
+@RequestMapping("api-bilheteria/rotas")
 public class RotaController extends GenericController<RotaService, Rota> {
 
     @GetMapping("/buscar-rotas/{idPartida}/{idChegada}/{dataViagem}")
