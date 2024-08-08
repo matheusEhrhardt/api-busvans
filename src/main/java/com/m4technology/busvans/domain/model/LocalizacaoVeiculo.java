@@ -15,6 +15,9 @@ public class LocalizacaoVeiculo {
     private Long id;
     private Double latitude;
     private Double longitude;
+    @OneToOne
+    @JoinColumn(name="ID_VEICULO")
+    private Veiculo veiculo;
     @CreationTimestamp
     private LocalDateTime atualizacao;
 }

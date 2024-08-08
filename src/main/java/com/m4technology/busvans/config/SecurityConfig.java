@@ -45,7 +45,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(antMatcher("/swagger-ui/**")).permitAll()
                         .requestMatchers(antMatcher("/api-bilheteria/**")).permitAll()
-                        .requestMatchers(antMatcher(HttpMethod.POST,"/auth")).permitAll()
+                        .requestMatchers(antMatcher("/auth/**")).permitAll()
                         .requestMatchers(antMatcher(HttpMethod.POST,"/usuarios")).permitAll()
                         .requestMatchers(antMatcher(HttpMethod.GET,"/jewels/**")).permitAll()
                         .requestMatchers(antMatcher("/jewels/**")).hasAnyRole("ADMIN","USER")

@@ -1,5 +1,7 @@
 package com.m4technology.busvans.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.m4technology.busvans.domain.enums.PerfilEnum;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
@@ -14,16 +16,28 @@ import java.util.Collection;
 @Entity
 public class Usuario implements UserDetails {
     @Id
-    @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idUsuario;
+    private Long id;
     private String usuario;
     private String nome;
     private String senha;
-    private String perfil;
+    @Enumerated(EnumType.STRING)
+    private PerfilEnum perfil;
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name="ID_VEICULO")
+    private Veiculo veiculo;
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name="ID_EMPRESA")
+    private Empresa empresa;
     @CreationTimestamp
     @Column(name = "data_cadastro")
     private LocalDate dataCadastro;
+    @Transient
+    private Long idVeiculo;
+    @Transient
+    private Long idEmpresa;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

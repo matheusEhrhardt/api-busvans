@@ -20,7 +20,7 @@ public class PrecoPassagemService extends GenericService<PrecoPassagemRepository
         super(new PrecoPassagem());
     }
 
-    public List<PrecoPassagemDTO> consultaPrecoPassagem() {
-        return detailRepository.consultaPrecoPassagem();
+    public List<PrecoPassagemDTO> consultaPrecoPassagem(Long veiculo) {
+        return detailRepository.consultaPrecoPassagem(veiculo);
     }
 }

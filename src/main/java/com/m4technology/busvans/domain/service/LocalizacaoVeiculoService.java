@@ -76,7 +76,7 @@ public class LocalizacaoVeiculoService extends GenericService<LocalizacaoVeiculo
 
     public StatusEnum registrarLocalizacaoVeiculo(LocalizacaoVeiculoDTO localizacaoVeiculoDTO){
 
-        LocalizacaoVeiculo localizacaoVeiculo;
+        LocalizacaoVeiculo localizacaoVeiculo = null;
 
         Optional<Veiculo> veiculo =  veiculoService.buscarPorPlaca(localizacaoVeiculoDTO.getPlaca());
 
@@ -84,13 +84,16 @@ public class LocalizacaoVeiculoService extends GenericService<LocalizacaoVeiculo
             throw new EntidadeNaoEncontradaException("Não foi encontrado nenhum veiculo com a placa: " + localizacaoVeiculoDTO.getPlaca());
         }
 
-        localizacaoVeiculo = veiculo.get().getLocalizacao() == null ? new LocalizacaoVeiculo() : veiculo.get().getLocalizacao();
-
         localizacaoVeiculo.setLatitude(localizacaoVeiculoDTO.getLatitude());
         localizacaoVeiculo.setLongitude(localizacaoVeiculoDTO.getLongitude());
+        localizacaoVeiculo.setVeiculo(veiculo.get());
 
         repository.save(localizacaoVeiculo);
 
         return StatusEnum.SUC;
+    }
+
+    public LocalizacaoVeiculoDTO consultaLocalizacaoVeiculo(Long idVeiculo){
+        return localizacaoVeiculoRepository.consultaLocalizacaoVeiculo(idVeiculo);
     }
 }

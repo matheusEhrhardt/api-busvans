@@ -53,11 +53,21 @@ public class AuthenticationService {
                         request.getPassword()
                 )
         );
-        var user = usuarioService.findByCodigoUsuario(request.getUsername())
-                .orElseThrow();
-        var jwtToken = jwtService.generateToken(user);
+        Optional<Usuario> user = usuarioService.findByCodigoUsuario(request.getUsername());
+
+        if (user.isEmpty()){
+            throw new EntidadeNaoEncontradaException("Não foi encontrado nenhum usuário com as credencias informadas");
+        }
+
+        Usuario usuario = user.get();
+
+        var jwtToken = jwtService.generateToken(usuario);
+
         return AuthenticationResponse.builder()
                 .token(jwtToken)
+                .perfil(usuario.getPerfil())
+                .veiculo(usuario.getVeiculo() == null ? null : usuario.getVeiculo().getId())
+                .empresa(usuario.getEmpresa() == null ? null : usuario.getEmpresa().getId())
                 .build();
     }
 }

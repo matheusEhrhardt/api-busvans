@@ -11,12 +11,12 @@ public class PrecoPassagemDTO {
 
     private String cidadePartida;
     private String cidadeChegada;
-    private BigDecimal praco;
+    private BigDecimal preco;
 
     public PrecoPassagemDTO(ResultSet rs) throws SQLException {
         this.cidadeChegada = rs.getString("cidade_chegada");
         this.cidadePartida = rs.getString("cidade_partida");
-        this.praco = rs.getBigDecimal("preco");
+        this.preco = rs.getBigDecimal("preco");
     }
 
 }

@@ -12,7 +12,7 @@ public class Veiculo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long ID;
+    private Long id;
     private String placa;
     private String modelo;
     private Integer ano;
@@ -24,9 +24,6 @@ public class Veiculo {
     private Empresa empresa;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<VeiculoRota> veiculoRotas;
-    @OneToOne
-    @JoinColumn(name="ID_LOCALIZACAO")
-    private LocalizacaoVeiculo localizacao;
 
     // motorista
     // cobrador

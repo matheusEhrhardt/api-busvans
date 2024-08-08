@@ -8,7 +8,9 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 @SuppressWarnings({"deprecation", "SpringJavaInjectionPointsAutowiringInspection"})
@@ -18,12 +20,15 @@ public class PrecoPassagemDetailRepository {
     @Qualifier("busvansDataSource")
     private DataSource datasource;
 
-    public List<PrecoPassagemDTO> consultaPrecoPassagem() {
+    public List<PrecoPassagemDTO> consultaPrecoPassagem(Long veiculo) {
 
         NamedParameterJdbcTemplate namedTemplateAmzcred = new NamedParameterJdbcTemplate(datasource);
 
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("veiculo", veiculo);
+
         return namedTemplateAmzcred
-                .query(PrecoPassagemQuery.buscarPrecosPassagens, (rs, rowNum) -> new PrecoPassagemDTO(rs));
+                .query(PrecoPassagemQuery.buscarPrecosPassagens, parameters, (rs, rowNum) -> new PrecoPassagemDTO(rs));
 
 
     }

@@ -35,4 +35,19 @@ public class LocalizacaoVeiculoDetailRepository {
                 .query(LocalizacaoVeiculoQuery.buscarVeiculosMaisProximos,parameters, (rs, rowNum) -> new LocalizacaoVeiculoDTO(rs));
 
     }
+
+    public LocalizacaoVeiculoDTO consultaLocalizacaoVeiculo(Long idVeiculo){
+
+        NamedParameterJdbcTemplate namedTemplateAmzcred = new NamedParameterJdbcTemplate(datasource);
+
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("veiculo", idVeiculo);
+
+        List<LocalizacaoVeiculoDTO> localizacaoVeiculos = namedTemplateAmzcred
+                .query(LocalizacaoVeiculoQuery.buscarLocalizacaoPorVeiculo,parameters, (rs, rowNum) -> new LocalizacaoVeiculoDTO(rs));
+
+        return localizacaoVeiculos.stream().findFirst().orElse(null);
+    }
+
+
 }

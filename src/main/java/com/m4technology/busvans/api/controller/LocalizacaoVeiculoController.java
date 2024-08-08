@@ -32,5 +32,8 @@ public class LocalizacaoVeiculoController extends GenericController<LocalizacaoV
         return statusRetorno.getDescricao();
     }
 
-
+    @GetMapping("/por-veiculo/{idVeiculo}")
+    public LocalizacaoVeiculoDTO consultaLocalizacaoVeiculo(@PathVariable Long idVeiculo){
+        return service.consultaLocalizacaoVeiculo(idVeiculo);
+    }
 }
