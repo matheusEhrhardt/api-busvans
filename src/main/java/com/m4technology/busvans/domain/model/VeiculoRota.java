@@ -15,9 +15,6 @@ public class VeiculoRota {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne
-    @JoinColumn(name="ID_VEICULO")
-    private Veiculo veiculo;
     @ManyToOne
     @JoinColumn(name="ID_ROTA")
     private Rota rota;

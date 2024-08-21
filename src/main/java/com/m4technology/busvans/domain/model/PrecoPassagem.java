@@ -21,7 +21,6 @@ public class PrecoPassagem {
     @JoinColumn(name="LOCAL_CHEGADA")
     private Cidade localChegada;
     private BigDecimal preco;
-
     @Column(name = "DURACAO_VIAGEM")
     private Double duracaoViagem;
 }

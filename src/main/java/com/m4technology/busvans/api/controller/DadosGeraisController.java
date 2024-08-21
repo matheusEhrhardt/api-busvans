@@ -15,7 +15,8 @@ import java.util.Date;
 public class DadosGeraisController {
 
     @GetMapping("/{empresa}")
-    private DadosGeraisDTO buscarDadosGerais(@PathVariable Long empresa, @RequestParam(required = false) String periodo, @RequestParam(required = false) Date dataInicial,
+    private DadosGeraisDTO buscarDadosGerais(@PathVariable Long empresa, @RequestParam(required = false) String periodo,
+                                             @RequestParam(required = false) Date dataInicial,
                                              @RequestParam(required = false) Date dataFinal){
 
         return DadosGeraisDTO.builder()

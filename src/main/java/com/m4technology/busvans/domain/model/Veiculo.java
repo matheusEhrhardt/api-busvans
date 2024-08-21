@@ -4,8 +4,6 @@ import com.m4technology.busvans.domain.enums.TipoVeiculoEnum;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.List;
-
 @Data
 @Entity
 public class Veiculo {
@@ -22,9 +20,12 @@ public class Veiculo {
     @ManyToOne
     @JoinColumn(name="ID_EMPRESA")
     private Empresa empresa;
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<VeiculoRota> veiculoRotas;
+    @ManyToOne
+    @JoinColumn(name="ID_VEICULO_ROTA")
+    private VeiculoRota veiculoRota;
+    @Transient
+    private Long idEmpresa;
+    @Transient
+    private Long idVeiculoRota;
 
-    // motorista
-    // cobrador
 }

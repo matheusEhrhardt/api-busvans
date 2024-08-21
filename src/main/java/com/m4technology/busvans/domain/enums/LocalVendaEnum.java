@@ -1,13 +1,14 @@
 package com.m4technology.busvans.domain.enums;
 
-public enum StatusTicketEnum {
+public enum LocalVendaEnum {
 
-    D("Disponivel"),
-    I("Indisponivel");
+    ONLINE("Online"),
+    TERMINAL("Terminal"),
+    VEICULO("Veiculo");
 
     private String descricao;
 
-    StatusTicketEnum(String descricao) {
+    LocalVendaEnum(String descricao) {
         this.descricao = descricao;
     }
 

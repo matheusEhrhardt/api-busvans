@@ -1,7 +1,11 @@
 package com.m4technology.busvans.domain.model;
 
+import com.m4technology.busvans.domain.enums.LocalVendaEnum;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
@@ -10,6 +14,9 @@ import java.util.List;
 
 @Data
 @Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Passagem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +36,9 @@ public class Passagem {
     @OneToOne
     @JoinColumn(name="ID_PAGAMENTO")
     private Pagamento pagamento;
+    @Column(name = "LOCAL_VENDA")
+    @Enumerated(EnumType.STRING)
+    private LocalVendaEnum localVenda;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Ticket> tickets;
 }

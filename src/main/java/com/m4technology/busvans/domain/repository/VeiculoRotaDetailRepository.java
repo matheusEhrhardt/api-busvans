@@ -1,7 +1,10 @@
 package com.m4technology.busvans.domain.repository;
 
-import com.m4technology.busvans.domain.dto.PrecoPassagemDTO;
-import com.m4technology.busvans.domain.query.PrecoPassagemQuery;
+import com.m4technology.busvans.domain.dto.ResumoRotaDTO;
+import com.m4technology.busvans.domain.dto.VeiculoRotaDTO;
+import com.m4technology.busvans.domain.query.RotaQuery;
+import com.m4technology.busvans.domain.query.VeiculoRotaQuery;
+import com.m4technology.busvans.domain.utils.PaginationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -14,21 +17,19 @@ import java.util.Map;
 
 @Repository
 @SuppressWarnings({"deprecation", "SpringJavaInjectionPointsAutowiringInspection"})
-public class PrecoPassagemDetailRepository {
+public class VeiculoRotaDetailRepository {
 
     @Autowired
     @Qualifier("busvansDataSource")
     private DataSource datasource;
 
-    public List<PrecoPassagemDTO> consultaPrecoPassagem(Long veiculo) {
+    public List<VeiculoRotaDTO> consultaVeiculoRotas(){
 
         NamedParameterJdbcTemplate namedTemplateAmzcred = new NamedParameterJdbcTemplate(datasource);
 
-        Map<String, Object> parameters = new HashMap<>();
-        parameters.put("veiculo", veiculo);
-
         return namedTemplateAmzcred
-                .query(PrecoPassagemQuery.buscarPrecosPassagens, parameters, (rs, rowNum) -> new PrecoPassagemDTO(rs));
+                .query(VeiculoRotaQuery.buscarDetalhado, (rs, rowNum) -> new VeiculoRotaDTO(rs));
 
     }
+
 }

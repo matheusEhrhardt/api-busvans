@@ -63,11 +63,9 @@ public class PagamentoService extends GenericService<PagamentoRepository, Pagame
             tickets =  ticketService.salvar(passagem);
         }
 
-        List<String> ticketsStr = tickets.stream()
+        List<Long> ticketsStr = tickets.stream()
                 .map(Ticket::getId)
                 .collect(Collectors.toList());
-
-
 
         return new RetornoPagamentoDTO();
     }

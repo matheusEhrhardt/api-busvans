@@ -5,6 +5,7 @@ import lombok.Getter;
 @Getter
 public enum FormaPagamentoEnum {
     PX("Pix"),
+    DN("Dinheiro"),
     CC("Cartão de Crédito"),
     CD("Cartão de Débito");
 
@@ -22,6 +23,8 @@ public enum FormaPagamentoEnum {
                 return FormaPagamentoEnum.CC;
             case "CD":
                 return FormaPagamentoEnum.CD;
+            case "DN":
+                return FormaPagamentoEnum.DN;
             default:
                 return null;
         }

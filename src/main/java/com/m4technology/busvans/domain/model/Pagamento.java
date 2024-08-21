@@ -3,12 +3,18 @@ package com.m4technology.busvans.domain.model;
 import com.m4technology.busvans.domain.enums.FormaPagamentoEnum;
 import com.m4technology.busvans.domain.enums.StatusPagamentoEnum;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
 @Data
 @Entity
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Pagamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

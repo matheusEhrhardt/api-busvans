@@ -10,7 +10,7 @@ public class Ticket {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private Long id;
     @Enumerated(EnumType.STRING)
     private StatusTicketEnum status;
     @ManyToOne
@@ -20,8 +20,7 @@ public class Ticket {
     public Ticket() {
     }
 
-    public Ticket(String id, StatusTicketEnum status, Passagem passagem) {
-        this.id = id;
+    public Ticket(StatusTicketEnum status, Passagem passagem) {
         this.status = status;
         this.passagem = passagem;
     }
