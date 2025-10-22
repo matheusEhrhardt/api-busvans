@@ -17,7 +17,7 @@ public class Empresa {
     private String cnpj;
     private String email;
     private String contato;
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "empresa", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Veiculo> veiculos;
 }

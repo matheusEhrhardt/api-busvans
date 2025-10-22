@@ -22,7 +22,7 @@ public class Veiculo {
     @ManyToOne
     @JoinColumn(name="id_empresa")
     private Empresa empresa;
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "veiculo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<VeiculoRota> veiculoRotas;
     @OneToOne
     @JoinColumn(name="id_localizacao")

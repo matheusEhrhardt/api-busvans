@@ -30,6 +30,6 @@ public class Passagem {
     @OneToOne
     @JoinColumn(name="id_pagamento")
     private Pagamento pagamento;
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "passagem", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Ticket> tickets;
 }
