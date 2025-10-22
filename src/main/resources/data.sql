@@ -3,20 +3,8 @@
 --   spring.jpa.defer-datasource-initialization=true
 --   spring.sql.init.mode=always
 
-SET NAMES utf8mb4;
-SET time_zone = '+00:00';
-
-START TRANSACTION;
-
--- 1) Cidades
-INSERT INTO cidade (nome)
-SELECT 'São Paulo' WHERE NOT EXISTS (SELECT 1 FROM cidade WHERE nome = 'São Paulo');
-INSERT INTO cidade (nome)
-SELECT 'Rio de Janeiro' WHERE NOT EXISTS (SELECT 1 FROM cidade WHERE nome = 'Rio de Janeiro');
-INSERT INTO cidade (nome)
-SELECT 'Belo Horizonte' WHERE NOT EXISTS (SELECT 1 FROM cidade WHERE nome = 'Belo Horizonte');
-INSERT INTO cidade (nome)
-SELECT 'Campinas' WHERE NOT EXISTS (SELECT 1 FROM cidade WHERE nome = 'Campinas');
+-- Intentionally left blank. Seeding is manual now.
+-- See: src/main/resources/db/_migration/V_002__seed.sql
 
 SET @cidade_sp := (SELECT id FROM cidade WHERE nome = 'São Paulo' LIMIT 1);
 SET @cidade_rj := (SELECT id FROM cidade WHERE nome = 'Rio de Janeiro' LIMIT 1);
