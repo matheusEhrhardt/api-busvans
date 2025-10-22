@@ -1,5 +1,6 @@
 package com.m4technology.busvans.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -17,5 +18,6 @@ public class Empresa {
     private String email;
     private String contato;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Veiculo> veiculos;
 }

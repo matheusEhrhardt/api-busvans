@@ -1,0 +1,19 @@
+# IDE
+*.iml
+.idea/
+.vscode/
+
+# Build
+/target/
+/.mvn/wrapper/maven-wrapper.jar
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Local env files - do not commit secrets
+.env
+*.env

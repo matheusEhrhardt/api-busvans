@@ -79,6 +79,13 @@
 			<version>2.5.0</version>
 		</dependency>
 
+		<!-- Load .env into Spring Environment (supports Spring Boot 3) -->
+		<dependency>
+			<groupId>me.paulschwarz</groupId>
+			<artifactId>spring-dotenv</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

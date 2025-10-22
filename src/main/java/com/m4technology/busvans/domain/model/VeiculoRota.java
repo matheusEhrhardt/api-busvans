@@ -1,5 +1,6 @@
 package com.m4technology.busvans.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -17,6 +18,7 @@ public class VeiculoRota {
     private Long id;
     @ManyToOne
     @JoinColumn(name="ID_VEICULO")
+    @JsonIgnore
     private Veiculo veiculo;
     @ManyToOne
     @JoinColumn(name="ID_ROTA")

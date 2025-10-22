@@ -1,5 +1,6 @@
 package com.m4technology.busvans.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
@@ -15,6 +16,7 @@ public class LocalizacaoVeiculo {
     private Long id;
     @OneToOne
     @JoinColumn(name = "ID_VEICULO")
+    @JsonIgnore
     private Veiculo veiculo;
     private Long latitude;
     private Long longitude;
