@@ -14,24 +14,24 @@ public class Rota {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
-    @JoinColumn(name="LOCAL_PARTIDA")
+    @JoinColumn(name="local_partida")
     private Cidade localPartida;
     @ManyToOne
-    @JoinColumn(name="LOCAL_CHEGADA")
+    @JoinColumn(name="local_chegada")
     private Cidade localChegada;
 
     @ManyToMany
     @JoinTable(
-            name = "ROTA_CIDADE",
-            joinColumns = @JoinColumn(name = "ID_ROTA"),
-            inverseJoinColumns = @JoinColumn(name = "ID_CIDADE")
+            name = "rota_cidade",
+            joinColumns = @JoinColumn(name = "id_rota"),
+            inverseJoinColumns = @JoinColumn(name = "id_cidade")
     )
     private List<Cidade> possiveislocaisChegada;
     @ManyToMany
     @JoinTable(
-            name = "ROTA_CIDADE",
-            joinColumns = @JoinColumn(name = "ID_ROTA"),
-            inverseJoinColumns = @JoinColumn(name = "ID_CIDADE")
+            name = "rota_cidade",
+            joinColumns = @JoinColumn(name = "id_rota"),
+            inverseJoinColumns = @JoinColumn(name = "id_cidade")
     )
     private List<Cidade> possiveislocaisPartida;
 }

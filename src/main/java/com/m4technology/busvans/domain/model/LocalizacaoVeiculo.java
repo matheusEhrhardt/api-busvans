@@ -9,13 +9,13 @@ import java.time.LocalDateTime;
 
 @Data
 @Entity
-@Table(name = "LOCALIZACAO_VEICULO")
+@Table(name = "localizacao_veiculo")
 public class LocalizacaoVeiculo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToOne
-    @JoinColumn(name = "ID_VEICULO")
+    @JoinColumn(name = "id_veiculo")
     @JsonIgnore
     private Veiculo veiculo;
     private Long latitude;

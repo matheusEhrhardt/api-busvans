@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 @Data
 @Entity
-@Table(name = "PRECO_PASSAGEM")
+@Table(name = "preco_passagem")
 public class PrecoPassagem {
 
     @Id
@@ -15,13 +15,13 @@ public class PrecoPassagem {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name="LOCAL_PARTIDA")
+    @JoinColumn(name="local_partida")
     private Cidade localPartida;
     @ManyToOne
-    @JoinColumn(name="LOCAL_CHEGADA")
+    @JoinColumn(name="local_chegada")
     private Cidade localChegada;
     private BigDecimal preco;
 
-    @Column(name = "DURACAO_VIAGEM")
+    @Column(name = "duracao_viagem")
     private Double duracaoViagem;
 }

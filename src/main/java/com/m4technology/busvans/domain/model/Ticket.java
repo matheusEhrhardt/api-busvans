@@ -13,7 +13,7 @@ public class Ticket {
     @Enumerated(EnumType.STRING)
     private StatusTicketEnum status;
     @ManyToOne
-    @JoinColumn(name="ID_PASSAGEM")
+    @JoinColumn(name="id_passagem")
     private Passagem passagem;
 
     public Ticket() {

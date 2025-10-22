@@ -13,22 +13,22 @@ public class Pagamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "NOME_CARTAO")
+    @Column(name = "nome_cartao")
     private String nomeCartao;
-    @Column(name = "NUMERO_CARTAO")
+    @Column(name = "numero_cartao")
     private Long numeroCartao;
-    @Column(name = "VALIDADE_CARTAO")
+    @Column(name = "validade_cartao")
     private String validadeCartao;
     private Integer cvv;
-    @Column(name = "CHAVE_PIX")
+    @Column(name = "chave_pix")
     private String chavePix;
-    @Column(name = "FORMA_PAGAMENTO")
+    @Column(name = "forma_pagamento")
     @Enumerated(EnumType.STRING)
     private FormaPagamentoEnum formaPagamento;
-    @Column(name = "STATUS_PAGAMENTO")
+    @Column(name = "status_pagamento")
     @Enumerated(EnumType.STRING)
     private StatusPagamentoEnum statusPagamento;
-    @Column(name = "VALOR")
+    @Column(name = "valor")
     private BigDecimal valorTotal;
 
 }

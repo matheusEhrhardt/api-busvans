@@ -16,16 +16,16 @@ public class Veiculo {
     private String placa;
     private String modelo;
     private Integer ano;
-    @Column(name = "TIPO")
+    @Column(name = "tipo")
     @Enumerated(EnumType.STRING)
     private TipoVeiculoEnum tipoVeiculo;
     @ManyToOne
-    @JoinColumn(name="ID_EMPRESA")
+    @JoinColumn(name="id_empresa")
     private Empresa empresa;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<VeiculoRota> veiculoRotas;
     @OneToOne
-    @JoinColumn(name="ID_LOCALIZACAO")
+    @JoinColumn(name="id_localizacao")
     private LocalizacaoVeiculo localizacao;
 
     // motorista

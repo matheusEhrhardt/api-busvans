@@ -14,7 +14,7 @@ public class Cliente {
     private Long id;
     private String nome;
     private String cpf;
-    @Column(name = "DATA_NASCIMENTO")
+    @Column(name = "data_nascimento")
     private LocalDate dataNascimento;
     private String email;
     private Long contato;

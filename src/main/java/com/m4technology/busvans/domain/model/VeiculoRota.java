@@ -10,22 +10,22 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "VEICULO_ROTA")
+@Table(name = "veiculo_rota")
 public class VeiculoRota {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
-    @JoinColumn(name="ID_VEICULO")
+    @JoinColumn(name="id_veiculo")
     @JsonIgnore
     private Veiculo veiculo;
     @ManyToOne
-    @JoinColumn(name="ID_ROTA")
+    @JoinColumn(name="id_rota")
     private Rota rota;
-    @Column(name = "DIAS_SEMANA")
+    @Column(name = "dias_semana")
     private String diasSemana;
-    @Column(name = "HORA_SAIDA")
+    @Column(name = "hora_saida")
     private LocalTime horaSaida;
     @Transient
     private List<String> diasSemanaList;

@@ -15,20 +15,20 @@ public class Passagem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
-    @JoinColumn(name="ID_CLIENTE")
+    @JoinColumn(name="id_cliente")
     private Cliente cliente;
     @ManyToOne
-    @JoinColumn(name="ID_VEICULO_ROTA")
+    @JoinColumn(name="id_veiculo_rota")
     private VeiculoRota veiculoRota;
     private Integer quantidade;
 //    private BigDecimal valor;
     @CreationTimestamp
-    @Column(name = "DATA_HORA_COMPRA")
+    @Column(name = "data_hora_compra")
     private LocalDateTime dataHoraCompra;
-    @Column(name = "DATA_VIAGEM")
+    @Column(name = "data_viagem")
     private LocalDate dataViagem;
     @OneToOne
-    @JoinColumn(name="ID_PAGAMENTO")
+    @JoinColumn(name="id_pagamento")
     private Pagamento pagamento;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Ticket> tickets;
