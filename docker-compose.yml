@@ -1,52 +1,25 @@
-version: "3.9"
-
 services:
-  db:
-    image: mysql:8.0
-    container_name: busvans-mysql
-    restart: unless-stopped
-    environment:
-      MYSQL_DATABASE: busvans
-      MYSQL_USER: busvans
-      MYSQL_PASSWORD: busvans
-      MYSQL_ROOT_PASSWORD: changeme
-    command: ["--default-authentication-plugin=mysql_native_password", "--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci"]
-    ports:
-      - "3306:3306"
-    volumes:
-      - db-data:/var/lib/mysql
-      # If you ever add init scripts, mount them here (first run only)
-      # - ./src/main/resources/db/_migration:/docker-entrypoint-initdb.d:ro
-    healthcheck:
-      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u$$MYSQL_USER -p$$MYSQL_PASSWORD || exit 1"]
-      interval: 10s
-      timeout: 5s
-      retries: 10
-
   app:
     build:
       context: .
       dockerfile: Dockerfile
     image: busvans-api:latest
     container_name: busvans-api
-    depends_on:
-      db:
-        condition: service_healthy
+    # Mapeia "host.docker.internal" para o gateway do host Linux
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     environment:
       # Spring profile
       SPRING_PROFILES_ACTIVE: dev
-      # Database connection for application-dev.properties
-      DB_URL: jdbc:mysql://db:3306/busvans?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-      DB_USERNAME: busvans
-      DB_PASSWORD: busvans
-      # App port (keeps in sync with application-dev.properties default 8090)
+
+      # Aponte para o MySQL da VPS (no host)
+      DB_URL: ${DB_URL}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+
+      # App port
       SERVER_PORT: "8090"
-      # Optional Java flags (memory, GC, etc.)
       JAVA_OPTS: "-Xms256m -Xmx512m"
     ports:
       - "8090:8090"
     restart: unless-stopped
-
-volumes:
-  db-data:
-    driver: local
