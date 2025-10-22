@@ -1,0 +1,19 @@
+# Build output
+/target
+
+# VCS
+/.git
+/.gitignore
+
+# IDEs
+/.idea
+/.vscode
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+Dockerfile*
+**/.env
