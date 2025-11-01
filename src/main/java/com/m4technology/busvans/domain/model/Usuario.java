@@ -25,4 +25,8 @@ public class Usuario {
     @CreationTimestamp
     @Column(name = "data_cadastro")
     private LocalDate dataCadastro;
+
+    @ManyToOne
+    @JoinColumn(name = "id_veiculo")
+    private Veiculo veiculo;
 }
