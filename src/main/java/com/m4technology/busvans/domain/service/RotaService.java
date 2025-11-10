@@ -24,6 +24,12 @@ public class RotaService extends GenericService<RotaRepository, Rota> {
         super(new Rota());
     }
 
+    public Rota buscarPorPartidaChegada(Long idPartida, Long idChegada){
+        Rota rota = repository.findFirstByLocalPartidaIdAndLocalChegadaId(idPartida, idChegada);
+        if (rota == null) throw new com.m4technology.busvans.domain.exception.EntidadeNaoEncontradaException();
+        return rota;
+    }
+
     public List<ResumoRotaDTO> consultaResumoRotas(Long idPartida, Long idChegada, LocalDate dataViagem, String tipoVeiculo,int pagina, int limite){
 
         List<ResumoRotaDTO> retorno;

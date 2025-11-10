@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RotaRepository extends org.springframework.data.jpa.repository.JpaRepository<Rota, Long> {
+	Rota findFirstByLocalPartidaIdAndLocalChegadaId(Long localPartidaId, Long localChegadaId);
 }
