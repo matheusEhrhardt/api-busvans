@@ -13,7 +13,8 @@ public class Veiculo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long ID;
+    @Column(name = "id")
+    private Long id;
     private String placa;
     private String modelo;
     private Integer ano;

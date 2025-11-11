@@ -33,7 +33,7 @@ public class AuthController {
         Veiculo v = usuario.getVeiculo();
         if (v != null){
             veiculoResumo = new VeiculoResumoDTO(
-                    v.getID(),
+                    v.getId(),
                     v.getPlaca(),
                     v.getModelo(),
                     v.getAno(),
@@ -44,7 +44,7 @@ public class AuthController {
         HashMap<String, Object> claims = new HashMap<>();
         claims.put("id", usuario.getId());
         if (v != null) {
-            claims.put("idVeiculo", v.getID());
+            claims.put("idVeiculo", v.getId());
         }
         String token = jwtTokenProvider.generateToken(usuario.getEmail(), claims);
 
