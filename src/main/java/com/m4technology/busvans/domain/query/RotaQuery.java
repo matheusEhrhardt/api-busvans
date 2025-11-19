@@ -6,7 +6,9 @@ public class RotaQuery {
             "    vr.id veiculo_rota_id," +
             "    v.tipo tipo_veiculo," +
             "    v.placa placa_veiculo," +
+            "    c.id id_local_partida," +
             "    c.nome local_partida," +
+            "    c2.id id_local_chegada," +
             "    c2.nome local_chegada," +
             "    vr.hora_saida," +
             "    DATE_ADD(vr.hora_saida, INTERVAL pp.duracao_viagem hour) hora_chegada," +
@@ -28,7 +30,9 @@ public class RotaQuery {
             "    vr.id veiculo_rota_id," +
             "    v.tipo tipo_veiculo," +
             "    v.placa placa_veiculo," +
+            "    c.id id_local_partida," +
             "    c.nome local_partida," +
+            "    c2.id id_local_chegada," +
             "    c2.nome local_chegada," +
             "    vr.hora_saida," +
             "    DATE_ADD(vr.hora_saida, INTERVAL pp.duracao_viagem hour) hora_chegada," +
@@ -45,4 +49,5 @@ public class RotaQuery {
             "    and v.id = :idVeiculo" +
             "    order by vr.hora_saida" +
             "    LIMIT 1";
+
 }

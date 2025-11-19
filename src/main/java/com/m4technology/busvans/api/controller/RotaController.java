@@ -1,6 +1,5 @@
 package com.m4technology.busvans.api.controller;
 
-import com.m4technology.busvans.domain.dto.LocalizacaoVeiculoDTO;
 import com.m4technology.busvans.domain.dto.ResumoRotaDTO;
 import com.m4technology.busvans.domain.generic.GenericController;
 import com.m4technology.busvans.domain.model.Rota;
@@ -29,5 +28,10 @@ public class RotaController extends GenericController<RotaService, Rota> {
                                                         @PathVariable LocalDate dataViagem, @PathVariable Long idVeiculo){
 
         return service.consultaRotaPorVeiculo(idPartida,idChegada,dataViagem,idVeiculo);
+    }
+
+    @GetMapping("/veiculo/{idVeiculo}")
+    public List<ResumoRotaDTO> consultaRotasPorVeiculo(@PathVariable Long idVeiculo){
+        return service.consultaRotasPorVeiculo(idVeiculo);
     }
 }

@@ -13,7 +13,9 @@ public class ResumoRotaDTO {
     private Long idVeiculoRota;
     private TipoVeiculoEnum tipoVeiculo;
     private String placaVeiculo;
+    private Long idLocalPartida;
     private String localPartida;
+    private Long idLocalChegada;
     private String localChegada;
     private LocalTime horaSaida;
     private LocalTime horaChegada;
@@ -25,6 +27,8 @@ public class ResumoRotaDTO {
         this.idVeiculoRota = rs.getLong("veiculo_rota_id");
         this.localPartida = rs.getString("local_partida");
         this.localChegada = rs.getString("local_chegada");
+        this.idLocalPartida = rs.getLong("id_local_partida");
+        this.idLocalChegada = rs.getLong("id_local_chegada");
         this.horaSaida = rs.getObject("hora_saida", LocalTime.class);
         this.horaChegada = rs.getObject("hora_chegada", LocalTime.class);
         this.valorPassagem = rs.getBigDecimal("valor_passagem");

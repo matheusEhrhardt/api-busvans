@@ -1,6 +1,5 @@
 package com.m4technology.busvans.domain.repository;
 
-import com.m4technology.busvans.domain.dto.LocalizacaoVeiculoDTO;
 import com.m4technology.busvans.domain.dto.ResumoRotaDTO;
 import com.m4technology.busvans.domain.query.RotaQuery;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,4 +52,5 @@ public class RotaDetailRepository {
                 .stream().findFirst().orElse(null);
 
     }
+
 }
