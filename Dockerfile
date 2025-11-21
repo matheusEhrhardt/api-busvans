@@ -1,6 +1,6 @@
 # Multi-stage build for Spring Boot (Java 17)
 # 1) Build stage
-FROM maven:3.9-eclipse-temurin-21 AS builder
+FROM maven:3.9-eclipse-temurin-17 AS builder
 WORKDIR /workspace
 
 # Pre-cache dependencies
@@ -12,7 +12,7 @@ COPY src ./src
 RUN --mount=type=cache,target=/root/.m2 mvn -B -q -DskipTests package
 
 # 2) Runtime stage
-FROM eclipse-temurin:21-jre-alpine
+FROM eclipse-temurin:17-jre-alpine
 ENV TZ=America/Sao_Paulo \
     JAVA_OPTS=""
 
