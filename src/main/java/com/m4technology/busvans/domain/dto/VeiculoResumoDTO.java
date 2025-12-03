@@ -12,6 +12,17 @@ public class VeiculoResumoDTO {
     private Integer ano;
     private TipoVeiculoEnum tipo;
 
+    public VeiculoResumoDTO() {
+    }
+
+    public VeiculoResumoDTO(Long id, String placa, String modelo, Integer ano, TipoVeiculoEnum tipo) {
+        this.id = id;
+        this.placa = placa;
+        this.modelo = modelo;
+        this.ano = ano;
+        this.tipo = tipo;
+    }
+
     public static VeiculoResumoDTO from(Veiculo veiculo){
         if (veiculo == null) return null;
 
