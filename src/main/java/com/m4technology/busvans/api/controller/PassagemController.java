@@ -1,18 +1,16 @@
 package com.m4technology.busvans.api.controller;
 
+import com.m4technology.busvans.domain.dto.CriarPassagemDTO;
+import com.m4technology.busvans.domain.dto.GerarPassagemDTO;
 import com.m4technology.busvans.domain.generic.GenericController;
 import com.m4technology.busvans.domain.model.Cliente;
 import com.m4technology.busvans.domain.model.Passagem;
-import com.m4technology.busvans.domain.service.ClienteService;
-import com.m4technology.busvans.domain.service.PassagemService;
-import com.m4technology.busvans.domain.dto.GerarPassagemDTO;
 import com.m4technology.busvans.domain.model.Rota;
 import com.m4technology.busvans.domain.model.VeiculoRota;
-import com.m4technology.busvans.domain.model.Cliente;
-import com.m4technology.busvans.domain.model.Passagem;
+import com.m4technology.busvans.domain.service.ClienteService;
+import com.m4technology.busvans.domain.service.PassagemService;
 import com.m4technology.busvans.domain.service.RotaService;
 import com.m4technology.busvans.domain.service.VeiculoRotaService;
-import com.m4technology.busvans.domain.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -36,6 +34,25 @@ public class PassagemController extends GenericController<PassagemService, Passa
 
 	@Autowired
 	private ClienteService clienteService;
+
+	@PostMapping("/compra")
+	@ResponseStatus(HttpStatus.CREATED)
+	public Passagem cadastrar(@RequestBody @Valid CriarPassagemDTO dto){
+		Cliente cliente = clienteService.buscarPorId(dto.getClienteId());
+		VeiculoRota veiculoRota = veiculoRotaService.buscarPorId(dto.getVeiculoRotaId());
+
+		Passagem passagem = new Passagem();
+		passagem.setCliente(cliente);
+		passagem.setVeiculoRota(veiculoRota);
+		passagem.setQuantidade(dto.getQuantidade());
+		passagem.setDataViagem(dto.getDataViagem());
+
+		if (dto.getDataHoraCompra() != null) {
+			passagem.setDataHoraCompra(dto.getDataHoraCompra().toLocalDateTime());
+		}
+
+		return service.salvar(passagem);
+	}
 
 	@PostMapping("/gerar-por-trajeto")
 	@ResponseStatus(HttpStatus.CREATED)
