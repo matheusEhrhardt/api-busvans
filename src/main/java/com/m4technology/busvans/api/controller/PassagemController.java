@@ -2,6 +2,7 @@ package com.m4technology.busvans.api.controller;
 
 import com.m4technology.busvans.domain.dto.CriarPassagemDTO;
 import com.m4technology.busvans.domain.dto.GerarPassagemDTO;
+import com.m4technology.busvans.domain.dto.PassagemResponseDTO;
 import com.m4technology.busvans.domain.generic.GenericController;
 import com.m4technology.busvans.domain.model.Cliente;
 import com.m4technology.busvans.domain.model.Passagem;
@@ -37,9 +38,9 @@ public class PassagemController extends GenericController<PassagemService, Passa
 
 	@PostMapping("/compra")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Passagem cadastrar(@RequestBody @Valid CriarPassagemDTO dto){
-		Cliente cliente = clienteService.buscarPorId(dto.getClienteId());
-		VeiculoRota veiculoRota = veiculoRotaService.buscarPorId(dto.getVeiculoRotaId());
+		public PassagemResponseDTO cadastrar(@RequestBody @Valid CriarPassagemDTO dto){
+			Cliente cliente = clienteService.buscarPorId(dto.getClienteId());
+			VeiculoRota veiculoRota = veiculoRotaService.buscarPorId(dto.getVeiculoRotaId());
 
 		Passagem passagem = new Passagem();
 		passagem.setCliente(cliente);
@@ -51,12 +52,12 @@ public class PassagemController extends GenericController<PassagemService, Passa
 			passagem.setDataHoraCompra(dto.getDataHoraCompra().toLocalDateTime());
 		}
 
-		return service.salvar(passagem);
-	}
+			return PassagemResponseDTO.from(service.salvar(passagem));
+		}
 
 	@PostMapping("/gerar-por-trajeto")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Passagem gerarPorTrajeto(@RequestBody @Valid GerarPassagemDTO dto){
+	public PassagemResponseDTO gerarPorTrajeto(@RequestBody @Valid GerarPassagemDTO dto){
 
 		// busca rota pela cidade de partida/chegada
 		Rota rota = rotaService.buscarPorPartidaChegada(dto.getIdCidadePartida(), dto.getIdCidadeChegada());
@@ -74,6 +75,6 @@ public class PassagemController extends GenericController<PassagemService, Passa
 			passagem.setCliente(cliente);
 		}
 
-		return service.salvar(passagem);
+		return PassagemResponseDTO.from(service.salvar(passagem));
 	}
 }
